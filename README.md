@@ -1,136 +1,126 @@
-# European Power Fair Value Pipeline (Cobblestone Case Study)
+# Power Price Forecasting & Trading Pipeline
+
+An end-to-end pipeline for forecasting day-ahead electricity prices and translating forecasts into actionable trading signals.
+
+---
 
 ## Overview
-This project builds an end-to-end pipeline to forecast Day-Ahead (DA) power prices for the DE-LU market and translate forecasts into actionable prompt curve trading signals.
 
-The pipeline combines:
-- Time-series forecasting (XGBoost)
-- Fundamental drivers (load, renewables)
-- Data QA and anomaly detection
-- Trading signal generation with risk controls
-- LLM-based trader brief automation
+This project builds a complete workflow for power market analysis, including:
 
----
+- Data ingestion and preprocessing
+- Data quality assurance (QA)
+- Machine learning-based price forecasting
+- Translation of forecasts into trading signals
+- PnL simulation
+- Optional AI-assisted analysis for trader insights
 
-## Pipeline Architecture
-
-
-Data → QA → Forecast → Trading Signal → LLM Brief
-
-
-Modules:
-- `data_ingestion.py` → Fetch ENTSO-E or generate realistic fallback data
-- `qa_pipeline.py` → Time integrity, statistical checks, anomaly detection
-- `forecasting.py` → Baseline vs XGBoost forecasting with confidence intervals
-- `trading_view.py` → Converts forecast into trading signals + PnL simulation
-- `llm_analyst.py` → Generates trader-style daily brief using LLM
+The pipeline is designed to be robust, reproducible, and usable with or without external API access.
 
 ---
 
-## Data
+## Key Features
 
-- Market: DE-LU (Germany/Luxembourg)
-- Frequency: Hourly
-- Target: Day-Ahead prices
-- Drivers:
-  - Load forecast (demand proxy)
-  - Wind + solar generation (renewable supply proxy)
-
-Fallback synthetic data is used if ENTSO-E API key is not provided.
+### 1. Data Ingestion
+- Fetches day-ahead electricity price data
+- Incorporates fundamental drivers such as:
+  - Load (demand proxy)
+  - Renewable generation (supply proxy)
+- Includes a synthetic fallback dataset for reproducibility
 
 ---
 
-## Forecasting Approach
-
-### Baseline
-- Lag-24 (yesterday same hour)
-
-### Model
-- XGBoost Regressor
-
-### Features
-- Time: hour, day-of-week, month
-- Lags: 1h, 24h, 48h, 168h
-- Rolling: mean, volatility
-- Momentum: price change
-
-### Evaluation
-- MAE vs baseline
-- Improvement %
+### 2. Data Quality Assurance (QA)
+- Time integrity checks (missing/duplicate timestamps)
+- Statistical checks (distribution, outliers, anomalies)
+- Economic sanity checks:
+  - Price vs demand (positive relationship)
+  - Price vs renewables (negative relationship)
+- Generates a structured QA report
 
 ---
 
-## Trading Logic
-
-Forecasts are translated into a prompt curve view:
-
-- Compute spread = Forecast − Curve price
-- Compare spread vs uncertainty (confidence interval)
-
-### Signal Rules
-- If |spread| < uncertainty → **No trade**
-- If spread > uncertainty → **Long prompt**
-- If spread < -uncertainty → **Short prompt**
-
-### Risk Controls
-- Confidence-based filtering
-- Invalidation:
-  - Spread reverses sign
-  - Volatility exceeds expected range
-
-### Backtest (Simplified)
-- PnL simulated using actual vs curve price
+### 3. Forecasting
+- Baseline: previous-day (lag-24) price
+- Model: Gradient Boosting (XGBoost)
+- Feature engineering includes:
+  - Time-based features (hour, weekday)
+  - Lag features (1h, 24h, 168h)
+  - Rolling statistics and momentum
 
 ---
 
-## QA & Data Validation
-
-- Missing timestamps detection
-- Duplicate handling
-- Outlier detection (z-score)
-- Correlation sanity checks
-- Economic validation:
-  - Price ↑ with load
-  - Price ↓ with renewables
-
-Quality score assigned (0–100)
+### 4. Trading Signal Generation
+- Forecasts are converted into trading signals using:
+  - Spread between forecasted price and market reference price
+  - Uncertainty (confidence intervals)
+- Signal logic:
+  - LONG: forecast > reference + uncertainty
+  - SHORT: forecast < reference - uncertainty
+  - NO TRADE: within uncertainty band
 
 ---
 
-## LLM Integration
+### 5. PnL Simulation
+- Simulates trading performance based on signals
+- Tracks cumulative PnL over the forecast horizon
 
-Groq (LLaMA3) used to generate a daily trader brief:
-- Interprets model outputs
-- Highlights key drivers
-- Suggests trade + risks
-- Logs prompt + response for reproducibility
+---
 
-Fallback logic included if API unavailable.
+### 6. AI-Assisted Insights (Optional)
+- Generates concise trading summaries
+- Flags anomalies and potential risks
+- Automatically skipped if API key is not provided
+
+---
+
+## Project Structure
+
+
+.
+├── src/
+│ ├── data_ingestion.py
+│ ├── qa_pipeline.py
+│ ├── forecasting.py
+│ ├── trading_view.py
+│ └── llm_analyst.py
+├── tests/
+├── outputs/
+├── main.py
+├── config.yaml
+├── requirements.txt
+├── README.md
+└── .env.example
+
 
 ---
 
 ## How to Run
 
+### 1. Install dependencies
+
 ```bash
 pip install -r requirements.txt
+2. Run the pipeline
 python main.py
-
-Run tests:
-
-python tests/test_pipeline.py
 Outputs
 
-Generated in outputs/:
+After execution, the following outputs are generated:
 
-data/ → raw dataset
-charts/ → trading visualization
-submission.csv → predictions
-logs/ → QA report + LLM logs
-Notes
-Synthetic fallback ensures reproducibility without API dependency
-Pipeline designed to be easily extendable to real ENTSO-E data
-Focus is on trading relevance, not just prediction accuracy
-Author
+outputs/charts/trading_view.html
+→ Interactive visualization of forecasts, signals, and PnL
+outputs/submission.csv
+→ Forecasted values with confidence intervals
+outputs/logs/qa_report.json
+→ Data quality report
+Environment Variables (Optional)
 
-Mohd Atif
-Email: data.atif001@gmail.com
+Create a .env file:
+
+ENTSOE_API_KEY=your_key_here
+GROQ_API_KEY=your_key_here
+
+If not provided:
+
+Synthetic data will be used
+AI components will be skipped
