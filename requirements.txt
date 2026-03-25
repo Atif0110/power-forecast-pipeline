@@ -1,0 +1,11 @@
+pandas
+numpy
+xgboost
+scikit-learn
+plotly
+pyyaml
+python-dotenv
+groq
+entsoe-py
+joblib
+requests

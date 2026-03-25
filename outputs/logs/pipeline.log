@@ -1,0 +1,57 @@
+2026-03-25 23:00:46,072 | INFO | Real ENTSO-E data loaded
+2026-03-25 23:08:27,761 | INFO | Real ENTSO-E data loaded
+2026-03-25 23:08:27,780 | INFO |  Final data shape: (1417, 3)
+2026-03-25 23:08:28,806 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-25 23:08:28,807 | WARNING | LLM QA skipped: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-03-25 23:08:28,808 | INFO |  QA report saved | Quality Score: 60
+2026-03-25 23:08:29,131 | INFO |  Model MAE: 5.78 | Baseline: 22.41 | Improvement: 74.2%
+2026-03-25 23:08:31,115 | INFO |  Signal: LONG PROMPT | Spread: +20.83€ | PnL: +4784.29
+2026-03-25 23:08:31,461 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-25 23:08:31,462 | WARNING | LLM fallback used: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-03-25 23:28:44,231 | INFO | Real ENTSO-E data loaded
+2026-03-25 23:28:44,257 | INFO |  Final data shape: (1417, 3)
+2026-03-25 23:28:44,258 | INFO |  Range: 2025-01-01 00:00:00+01:00 to 2025-03-01 00:00:00+01:00
+2026-03-25 23:28:44,708 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-25 23:28:44,709 | WARNING | LLM QA skipped: Error code: 400 - {'error': {'message': 'The model `mixtral-8x7b-32768` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-03-25 23:28:44,711 | INFO |  QA report saved | Quality Score: 60
+2026-03-25 23:28:44,942 | INFO |  Model MAE: 5.78 | Baseline: 22.41 | Improvement: 74.2%
+2026-03-25 23:28:45,138 | INFO |  Signal: LONG PROMPT | Spread: +20.83€ | PnL: +4784.29
+2026-03-25 23:28:45,479 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-25 23:28:45,480 | WARNING | LLM fallback used: Error code: 400 - {'error': {'message': 'The model `mixtral-8x7b-32768` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-03-25 23:46:42,528 | INFO | Real ENTSO-E data loaded
+2026-03-25 23:46:42,570 | INFO |  Final data shape: (1417, 3)
+2026-03-25 23:46:42,571 | INFO |  Range: 2025-01-01 00:00:00+01:00 to 2025-03-01 00:00:00+01:00
+2026-03-25 23:46:43,346 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-25 23:46:43,347 | WARNING | LLM QA skipped: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-03-25 23:46:43,349 | INFO | QA report saved | Quality Score: 60
+2026-03-25 23:46:44,460 | INFO |  Model MAE: 5.78 | Baseline: 22.41 | Improvement: 74.2%
+2026-03-25 23:46:44,725 | INFO |  Signal: LONG PROMPT | Spread: +20.83€ | PnL: +4784.29
+2026-03-25 23:46:45,393 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-25 23:46:45,394 | WARNING | LLM fallback used: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-03-25 23:49:09,268 | INFO | Real ENTSO-E data loaded
+2026-03-25 23:49:09,301 | INFO |  Final data shape: (1417, 3)
+2026-03-25 23:49:09,302 | INFO |  Range: 2025-01-01 00:00:00+01:00 to 2025-03-01 00:00:00+01:00
+2026-03-25 23:49:12,994 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-25 23:49:13,020 | INFO | LLM QA complete
+2026-03-25 23:49:13,022 | INFO | QA report saved | Quality Score: 60
+2026-03-25 23:49:13,884 | INFO |  Model MAE: 5.78 | Baseline: 22.41 | Improvement: 74.2%
+2026-03-25 23:49:14,096 | INFO |  Signal: LONG PROMPT | Spread: +20.83€ | PnL: +4784.29
+2026-03-25 23:49:14,797 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-25 23:49:14,799 | WARNING | LLM fallback used: 'CompletionUsage' object has no attribute 'get'
+2026-03-25 23:52:16,051 | INFO | Real ENTSO-E data loaded
+2026-03-25 23:52:16,107 | INFO |  Final data shape: (1417, 3)
+2026-03-25 23:52:16,108 | INFO |  Range: 2025-01-01 00:00:00+01:00 to 2025-03-01 00:00:00+01:00
+2026-03-25 23:52:19,532 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-25 23:52:19,560 | INFO | LLM QA complete
+2026-03-25 23:52:19,562 | INFO | QA report saved | Quality Score: 60
+2026-03-25 23:52:20,711 | INFO |  Model MAE: 5.78 | Baseline: 22.41 | Improvement: 74.2%
+2026-03-25 23:52:23,949 | INFO |  Signal: LONG PROMPT | Spread: +20.83€ | PnL: +4784.29
+2026-03-25 23:52:24,959 | INFO | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-25 23:52:24,961 | INFO | Trader brief generated
+2026-03-25 23:54:54,441 | INFO |  Using realistic synthetic data
+2026-03-25 23:54:54,483 | INFO |  Final data shape: (1417, 3)
+2026-03-25 23:54:54,484 | INFO |  Range: 2025-01-01 00:00:00+01:00 to 2025-03-01 00:00:00+01:00
+2026-03-25 23:54:54,493 | INFO | QA report saved | Quality Score: 100
+2026-03-25 23:54:55,504 | INFO |  Model MAE: 1.04 | Baseline: 7.89 | Improvement: 86.84%
+2026-03-25 23:54:55,757 | INFO |  Signal: SHORT PROMPT | Spread: -44.40€ | PnL: +11127.11
+2026-03-25 23:54:55,758 | INFO | LLM skipped (no API key)
